@@ -2,85 +2,336 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>class1</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPath Navigator</title>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #4895ef;
+      --accent: #4cc9f0;
+      --dark: #212529;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url("bg.png") no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      max-width: 400px;
+      width: 70%;
+      margin-right: 3rem;
+      color: var(--dark);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .form-section {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: rgba(248, 249, 250, 0.85);
+      transition: all 0.3s ease;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 1em;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+    }
+
+    select:disabled {
+      background-color: rgba(241, 243, 245, 0.6);
+      color: #adb5bd;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button:hover:not(:disabled) {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    button:disabled {
+      background: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-position: 20% center;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 2rem;
+      }
+
+      .form-container {
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div>
-        <span class="left">
-            <h2>Select a Subject</h2>
-        </span>
-        <span class="right">
-            <a href="index.html">
-                <label for="back-arrow">⟵</label>
-                Go Back
-                <svg class="margin-left-auto margin-right-0" width="8" height="10" viewBox="0 0 8 10" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M3.40281 4.46225e-07L3.40281 7.87725L0.836149 5.47479L4.90799e-07 6.25727L4 10L8 6.25727L7.16385 5.47479L4.59719 7.87725L4.59719 6.0285e-07L3.40281 4.46225e-07Z"
-                        fill="black"></path>
-                </svg>
+  <div class="form-container">
+    <h2>🎓 EduPath Navigator</h2>
 
-            </a>
-        </span>
+    <div class="form-section">
+      <label for="class">Select Class:</label>
+      <select id="class">
+        <option value="">-- Choose Class --</option>
+        <option value="1">Class 1</option>
+        <option value="2">Class 2</option>
+        <option value="3">Class 3</option>
+        <option value="4">Class 4</option>
+        <option value="5">Class 5</option>
+        <option value="6">Class 6</option>
+        <option value="7">Class 7</option>
+        <option value="8">Class 8</option>
+        <option value="9">Class 9</option>
+        <option value="10">Class 10</option>
+        <option value="11">Class 11</option>
+        <option value="12">Class 12</option>
+      </select>
     </div>
-    <div class="subjects-cards">
-        <div class="card">
-            <a href="src/dashboard.html">
-                <label for="icon">Dashboard</label>
-                Dashboard
-            </a>
-        </div>
-    <div class="subjects-cards">
-        <div class="card">
-            <a href="src/11/economics/indian economic development/1/index.html">
-                <label for="icon">(maths)</label>
-                11 economic chapter 1
-            </a>
-        </div>
-        <div class="card">
-            <a href="NCERT/class1/hindi/">
-                <label for="icon">(hindi)</label>
-                Hindi
-            </a>
-        </div>
-        <div class="card">
-            <a href="NCERT/class1/sanskrit/">
-                <label for="icon">(snaskrit)</label>
-                Snaskrit
-            </a>
-        </div>
-        <div class="card">
-            <a href="NCERT/class1/english/">
-                <label for="icon">(english)</label>
-                English
-            </a>
-        </div>
-        <div class="card">
-            <a href="NCERT/class1/evs/">
-                <label for="icon">(Science/EVS)</label>
-                Science/EVS
-            </a>
-        </div>
 
-
-
-
-        <div class="card">
-            <a href="NCERT/class1/maths/">
-                <label for="icon">(Computer Science)</label>
-                Computer Science
-            </a>
-        </div>
-        <div class="card">
-            <a href="NCERT/class1/maths/">
-                <label for="icon">(Art)</label>
-                Art
-            </a>
-        </div>
+    <div class="form-section">
+      <label for="subject">Select Subject:</label>
+      <select id="subject" disabled>
+        <option value="">-- First Choose Class --</option>
+      </select>
     </div>
+
+    <div class="form-section">
+      <label for="book">Select Book:</label>
+      <select id="book" disabled>
+        <option value="">-- First Choose Subject --</option>
+      </select>
+    </div>
+
+    <div class="form-section">
+      <label for="chapter">Select Chapter:</label>
+      <select id="chapter" disabled>
+        <option value="">-- First Choose Book --</option>
+      </select>
+    </div>
+
+    <button id="goBtn" disabled>
+      <span>
+        Explore Chapter
+      </span>
+      <svg viewBox="0 -6 24 24" width="24" height="24" role="img" aria-label="right arrow"
+        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M5 12h12" />
+        <path d="M13 6l6 6-6 6" />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    // Example data structure
+    const data = {
+      "1": {
+        "Math": {
+          "Basic Math": ["Numbers", "Addition", "Subtraction", "Multiplication", "Division"],
+          "Geometry": ["Shapes", "Angles", "Lines", "Patterns"]
+        },
+        "English": {
+          "Grammar": ["Nouns", "Verbs", "Adjectives", "Sentences"],
+          "Story Book": ["Chapter 1", "Chapter 2", "Chapter 3"]
+        },
+        "Science": {
+          "General Science": ["Plants", "Animals", "Our Body", "Environment"]
+        }
+      },
+      "6": {
+        "Math": {
+          "NCERT Math": ["Knowing Our Numbers", "Whole Numbers", "Playing with Numbers", "Basic Geometrical Ideas"],
+          "Reference Math": ["Fractions", "Decimals", "Data Handling"]
+        },
+        "Science": {
+          "NCERT Science": ["Food", "Materials", "The World of Living", "Motion"],
+          "Reference Science": ["Light", "Electricity", "Magnets"]
+        }
+      },
+      "11": {
+        "Economics": {
+          "Indian Economic Development": ["1", "2", "Current Electricity", "Magnetic Effects", "Electromagnetic Induction"],
+          "Statistics for Economics": ["Optics", "Modern Physics", "Semiconductors"]
+        },
+        "Physics": {
+          "NCERT Physics": ["Electrostatics", "Current Electricity", "Magnetic Effects", "Electromagnetic Induction"],
+          "Reference Physics": ["Optics", "Modern Physics", "Semiconductors"]
+        },
+        "Chemistry": {
+          "NCERT Chemistry": ["Solutions", "Electrochemistry", "Chemical Kinetics"],
+          "Reference Chemistry": ["Biomolecules", "Polymers", "Chemistry in Everyday Life"]
+        },
+        "Math": {
+          "NCERT Math": ["Relations and Functions", "Inverse Trigonometric Functions", "Matrices"],
+          "Reference Math": ["Calculus", "Probability", "Linear Programming"]
+        }
+      },
+      "12": {
+        "Physics": {
+          "NCERT Physics": ["Electrostatics", "Current Electricity", "Magnetic Effects", "Electromagnetic Induction"],
+          "Reference Physics": ["Optics", "Modern Physics", "Semiconductors"]
+        },
+        "Chemistry": {
+          "NCERT Chemistry": ["Solutions", "Electrochemistry", "Chemical Kinetics"],
+          "Reference Chemistry": ["Biomolecules", "Polymers", "Chemistry in Everyday Life"]
+        },
+        "Math": {
+          "NCERT Math": ["Relations and Functions", "Inverse Trigonometric Functions", "Matrices"],
+          "Reference Math": ["Calculus", "Probability", "Linear Programming"]
+        }
+      }
+    };
+
+    const classSelect = document.getElementById("class");
+    const subjectSelect = document.getElementById("subject");
+    const bookSelect = document.getElementById("book");
+    const chapterSelect = document.getElementById("chapter");
+    const goBtn = document.getElementById("goBtn");
+
+    classSelect.addEventListener("change", () => {
+      subjectSelect.innerHTML = '<option value="">--Choose Subject--</option>';
+      bookSelect.innerHTML = '<option value="">--Choose Book--</option>';
+      chapterSelect.innerHTML = '<option value="">--Choose Chapter--</option>';
+      bookSelect.disabled = true;
+      chapterSelect.disabled = true;
+      goBtn.disabled = true;
+
+      const selectedClass = classSelect.value;
+      if (selectedClass && data[selectedClass]) {
+        subjectSelect.disabled = false;
+        Object.keys(data[selectedClass]).forEach(subject => {
+          let option = document.createElement("option");
+          option.value = subject;
+          option.textContent = subject;
+          subjectSelect.appendChild(option);
+        });
+      } else {
+        subjectSelect.disabled = true;
+      }
+    });
+
+    subjectSelect.addEventListener("change", () => {
+      bookSelect.innerHTML = '<option value="">--Choose Book--</option>';
+      chapterSelect.innerHTML = '<option value="">--Choose Chapter--</option>';
+      chapterSelect.disabled = true;
+      goBtn.disabled = true;
+
+      const selectedClass = classSelect.value;
+      const selectedSubject = subjectSelect.value;
+      if (selectedSubject && data[selectedClass][selectedSubject]) {
+        bookSelect.disabled = false;
+        Object.keys(data[selectedClass][selectedSubject]).forEach(book => {
+          let option = document.createElement("option");
+          option.value = book;
+          option.textContent = book;
+          bookSelect.appendChild(option);
+        });
+      } else {
+        bookSelect.disabled = true;
+      }
+    });
+
+    bookSelect.addEventListener("change", () => {
+      chapterSelect.innerHTML = '<option value="">--Choose Chapter--</option>';
+      goBtn.disabled = true;
+
+      const selectedClass = classSelect.value;
+      const selectedSubject = subjectSelect.value;
+      const selectedBook = bookSelect.value;
+      if (selectedBook && data[selectedClass][selectedSubject][selectedBook]) {
+        chapterSelect.disabled = false;
+        data[selectedClass][selectedSubject][selectedBook].forEach(chapter => {
+          let option = document.createElement("option");
+          option.value = chapter;
+          option.textContent = chapter;
+          chapterSelect.appendChild(option);
+        });
+      } else {
+        chapterSelect.disabled = true;
+      }
+    });
+
+    chapterSelect.addEventListener("change", () => {
+      goBtn.disabled = !chapterSelect.value;
+    });
+
+    goBtn.addEventListener("click", () => {
+      const selectedClass = classSelect.value;
+      const selectedSubject = subjectSelect.value.toLowerCase();
+      const selectedBook = bookSelect.value.toLowerCase();
+      const selectedChapter = chapterSelect.value.toLowerCase();
+      if (selectedClass && selectedSubject && selectedBook && selectedChapter) {
+        const url = `./src/${selectedClass}/${selectedSubject}/${selectedBook}/${selectedChapter}`;
+        alert(url)
+        window.location.href = url; // Redirect
+      }
+    });
+  </script>
+
 </body>
 
 </html>
