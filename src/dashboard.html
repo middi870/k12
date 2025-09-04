@@ -17,7 +17,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background: url("bg2.1.png") no-repeat center center;
+      background: url("../assets/bg.png") no-repeat center center;
       background-size: cover;
       display: flex;
       justify-content: flex-end;
@@ -196,7 +196,7 @@
         },
         "English": {
           "Grammar": ["Nouns", "Verbs", "Adjectives", "Sentences"],
-          "Story Book": ["Chapter 1", "Chapter 2", "Chapter 3"]
+          "Story Book": ["1", "Chapter 2", "Chapter 3"]
         },
         "Science": {
           "General Science": ["Plants", "Animals", "Our Body", "Environment"]
@@ -214,7 +214,7 @@
       },
       "11": {
         "Economics": {
-          "Indian Economic Development": ["Chapter1", "Current Electricity", "Magnetic Effects", "Electromagnetic Induction"],
+          "Indian Economic Development": ["1", "2", "Current Electricity", "Magnetic Effects", "Electromagnetic Induction"],
           "Statistics for Economics": ["Optics", "Modern Physics", "Semiconductors"]
         },
         "Physics": {
@@ -326,6 +326,7 @@
       const selectedChapter = chapterSelect.value.toLowerCase();
       if (selectedClass && selectedSubject && selectedBook && selectedChapter) {
         const url = `./${selectedClass}/${selectedSubject}/${selectedBook}/${selectedChapter}`;
+        alert(url)
         window.location.href = url; // Redirect
       }
     });
