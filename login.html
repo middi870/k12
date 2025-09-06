@@ -1,50 +1,135 @@
-<div>
-  <h2>Sign Up</h2>
-  <input id="signup-username" type="text" placeholder="Username">
-  <input id="signup-password" type="password" placeholder="Password">
-  <button onclick="signup()">Sign Up</button>
-  <p id="signup-msg"></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K12 Auth</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    h1 { margin-bottom: 1rem; }
+    form {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    label { display: block; margin-top: 0.5rem; }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+    .message {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
 
-<div>
-  <h2>Login</h2>
-  <input id="login-username" type="text" placeholder="Username">
-  <input id="login-password" type="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <p id="login-msg"></p>
-</div>
+  <h1>K12 Auth Demo</h1>
 
-<script>
-const API = "https://k12-backend-y0uj.onrender.com";
+  <!-- Signup -->
+  <form id="signupForm">
+    <h3>Sign Up</h3>
+    <label>Username:</label>
+    <input type="text" id="signupUsername" required>
+    <label>Password:</label>
+    <input type="password" id="signupPassword" required>
+    <button type="submit">Sign Up</button>
+    <div class="message" id="signupMsg"></div>
+  </form>
 
-async function signup() {
-  const username = document.getElementById("signup-username").value;
-  const password = document.getElementById("signup-password").value;
+  <!-- Login -->
+  <form id="loginForm">
+    <h3>Login</h3>
+    <label>Username:</label>
+    <input type="text" id="loginUsername" required>
+    <label>Password:</label>
+    <input type="password" id="loginPassword" required>
+    <button type="submit">Login</button>
+    <div class="message" id="loginMsg"></div>
+  </form>
 
-  const res = await fetch(`${API}/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
-  });
+  <!-- Profile -->
+  <button id="getProfile">Get Profile</button>
+  <div id="profile"></div>
 
-  const data = await res.json();
-  document.getElementById("signup-msg").innerText = data.message;
-}
+  <script>
+    // 👇 Replace with your actual Render backend URL
+    const API = "https://YOUR-BACKEND-NAME.onrender.com";
 
-async function login() {
-  const username = document.getElementById("login-username").value;
-  const password = document.getElementById("login-password").value;
+    // Signup
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("signupUsername").value;
+      const password = document.getElementById("signupPassword").value;
 
-  const res = await fetch(`${API}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
-  });
+      const res = await fetch(`${API}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      document.getElementById("signupMsg").innerText = data.message;
+    });
 
-  const data = await res.json();
-  if (data.success) {
-    localStorage.setItem("token", data.token);
-  }
-  document.getElementById("login-msg").innerText = data.message;
-}
-</script>
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      const res = await fetch(`${API}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      document.getElementById("loginMsg").innerText = data.message;
+
+      if (data.success) {
+        localStorage.setItem("k12_token", data.token);
+      }
+    });
+
+    // Profile
+    document.getElementById("getProfile").addEventListener("click", async () => {
+      const token = localStorage.getItem("k12_token");
+      if (!token) {
+        document.getElementById("profile").innerText = "Please login first.";
+        return;
+      }
+
+      const res = await fetch(`${API}/profile`, {
+        headers: { "Authorization": "Bearer " + token }
+      });
+      const data = await res.json();
+      document.getElementById("profile").innerText = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>
